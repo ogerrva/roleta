@@ -23,10 +23,10 @@ flex-direction:column;
 align-items:center;
 justify-content:center;
 font-family:'Poppins',sans-serif;
-overflow:hidden;
 }
 
 /* LOGO */
+
 .logo-container{
 text-align:center;
 margin-bottom:30px;
@@ -64,7 +64,7 @@ height:350px;
 display:flex;
 justify-content:center;
 align-items:center;
-margin-bottom:40px;
+margin-bottom:30px;
 }
 
 .roulette-border{
@@ -159,6 +159,7 @@ cursor:pointer;
 text-transform:uppercase;
 box-shadow:0 10px 20px rgba(0,243,255,0.4);
 animation:pulse-btn 2s infinite;
+margin-bottom:40px;
 }
 
 /* MODAL */
@@ -218,12 +219,13 @@ cursor:pointer;
 /* RODAPÉ */
 
 .footer{
-position:fixed;
-bottom:20px;
-font-weight:800;
+text-align:center;
+font-weight:900;
 letter-spacing:2px;
 color:#00f3ff;
 text-shadow:0 0 10px #00f3ff;
+margin-top:10px;
+margin-bottom:20px;
 }
 
 /* ANIMAÇÕES */
@@ -269,38 +271,41 @@ text-shadow:0 0 10px #00f3ff;
 </div>
 
 <div class="center-dot"></div>
+
 </div>
 
-<button class="spin-btn" id="spinBtn">Girar Roleta</button>
+<button class="spin-btn" id="spinBtn">GIRAR ROLETA</button>
+
+<div class="footer">
+PROMOÇÃO EXCLUSIVA PARA A EXPO B.E.I
+</div>
 
 <div class="modal" id="resultModal">
+
 <div class="modal-content">
 
-<h2 id="modalTitle">Parabéns</h2>
-<p id="modalDesc">Você ganhou:</p>
+<h2 id="modalTitle"></h2>
+<p id="modalDesc"></p>
 
-<div id="modalPrize" class="prize-text">PRÊMIO</div>
+<div id="modalPrize"></div>
 
 <br>
 
 <button class="close-btn" onclick="closeModal()">Continuar</button>
 
 </div>
-</div>
 
-<div class="footer">
-PROMOÇÃO EXCLUSIVA PARA A EXPO B.E.I
 </div>
 
 <script>
 
-const wheel=document.getElementById('wheel');
-const spinBtn=document.getElementById('spinBtn');
+const wheel=document.getElementById("wheel")
+const spinBtn=document.getElementById("spinBtn")
 
-const modal=document.getElementById('resultModal');
-const modalTitle=document.getElementById('modalTitle');
-const modalDesc=document.getElementById('modalDesc');
-const modalPrize=document.getElementById('modalPrize');
+const modal=document.getElementById("resultModal")
+const modalTitle=document.getElementById("modalTitle")
+const modalDesc=document.getElementById("modalDesc")
+const modalPrize=document.getElementById("modalPrize")
 
 const options=[
 {name:"Capinha",type:"win"},
@@ -308,74 +313,76 @@ const options=[
 {name:"Película",type:"win"},
 {name:"Não foi dessa vez",type:"lose"},
 {name:"Fone",type:"win"}
-];
+]
 
-let currentRotation=0;
-let spinning=false;
+let currentRotation=0
+let spinning=false
 
-spinBtn.onclick=()=>{
+spinBtn.addEventListener("click",spin)
 
-if(spinning)return;
+function spin(){
 
-spinning=true;
+if(spinning)return
 
-const index=Math.floor(Math.random()*options.length);
+spinning=true
 
-const slice=360/options.length;
+const index=Math.floor(Math.random()*options.length)
 
-const target=(index*slice)+(slice/2);
+const slice=360/options.length
 
-const stop=360-target;
+const target=(index*slice)+(slice/2)
 
-const spins=5;
+const stop=360-target
 
-const total=currentRotation+(spins*360)+stop-(currentRotation%360);
+const spins=5
 
-currentRotation=total;
+const total=currentRotation+(spins*360)+stop-(currentRotation%360)
 
-wheel.style.transform=`rotate(${currentRotation}deg)`;
+currentRotation=total
+
+wheel.style.transform=`rotate(${currentRotation}deg)`
 
 setTimeout(()=>{
 
-showResult(options[index]);
+showResult(options[index])
 
-spinning=false;
+spinning=false
 
 },5000)
 
-};
+}
 
 function showResult(result){
 
 if(result.type==="win"){
 
-modalTitle.innerText="🎉 PARABÉNS 🎉";
+modalTitle.innerText="🎉 PARABÉNS 🎉"
 
-modalDesc.innerText="Receba seu prêmio com a galera da CENTER TECH";
+modalDesc.innerText="Receba seu prêmio com a galera da CENTER TECH"
 
-modalPrize.className="prize-text";
+modalPrize.className="prize-text"
 
-modalPrize.innerText=result.name;
+modalPrize.innerText=result.name
 
 }else{
 
-modalTitle.innerText="Quase!";
+modalTitle.innerText="Quase!"
 
-modalDesc.innerText="Tente novamente!";
+modalDesc.innerText="Tente novamente!"
 
-modalPrize.className="lose-text";
+modalPrize.className="lose-text"
 
-modalPrize.innerText=result.name;
+modalPrize.innerText=result.name
 
 }
 
-modal.classList.add('active');
+modal.classList.add("active")
 
 }
 
 function closeModal(){
 
-modal.classList.remove('active');
+modal.classList.remove("active")
 
 }
 
