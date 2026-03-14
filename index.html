@@ -6,74 +6,76 @@
 <title>Roleta Premiada - CENTER TECH</title>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@400;700;800&display=swap');
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-user-select:none;
 }
 
 body{
-background: radial-gradient(circle at center, #1a0b2e 0%, #05010a 100%);
-min-height:100vh;
+background: radial-gradient(circle at center,#1a0b2e 0%,#05010a 100%);
+height:100vh;
+overflow:hidden;
 display:flex;
-flex-direction:column;
 align-items:center;
 justify-content:center;
 font-family:'Poppins',sans-serif;
 }
 
+/* CONTAINER QUE ESCALA */
+
+.main{
+width:420px;
+text-align:center;
+transform-origin:center;
+}
+
 /* LOGO */
 
 .logo-container{
-text-align:center;
-margin-bottom:30px;
+margin-bottom:25px;
 animation:float 3s ease-in-out infinite;
 }
 
 .logo{
-font-family:'Montserrat',sans-serif;
-font-size:4rem;
+font-family:'Montserrat';
+font-size:3rem;
 font-weight:900;
-color:#fff;
-text-transform:uppercase;
+color:white;
 letter-spacing:3px;
 text-shadow:
 0 0 10px #00f3ff,
 0 0 20px #00f3ff,
-0 0 40px #00f3ff,
-0 0 80px #0077ff;
+0 0 40px #00f3ff;
 }
 
 .logo-subtitle{
-font-size:1.2rem;
 color:#00f3ff;
-letter-spacing:5px;
-text-transform:uppercase;
 font-weight:700;
+letter-spacing:4px;
 }
 
 /* ROLETA */
 
 .roulette-wrapper{
 position:relative;
-width:350px;
-height:350px;
-display:flex;
-justify-content:center;
-align-items:center;
-margin-bottom:30px;
+width:320px;
+height:320px;
+margin:auto;
 }
 
 .roulette-border{
 position:absolute;
-width:380px;
-height:380px;
+width:360px;
+height:360px;
 border-radius:50%;
 background:conic-gradient(#00f3ff,#ff00ea,#00f3ff,#ff00ea,#00f3ff);
 animation:spin-border 2s linear infinite;
+left:-20px;
+top:-20px;
 }
 
 .roulette-border::after{
@@ -86,8 +88,8 @@ border-radius:50%;
 
 .wheel{
 position:absolute;
-width:340px;
-height:340px;
+width:320px;
+height:320px;
 border-radius:50%;
 overflow:hidden;
 transition: transform 5s cubic-bezier(0.15,0.9,0.2,1);
@@ -116,9 +118,8 @@ padding-top:25px;
 writing-mode:vertical-rl;
 font-weight:800;
 font-size:14px;
-color:#fff;
-text-transform:uppercase;
-text-shadow:2px 2px 4px rgba(0,0,0,0.9);
+color:white;
+text-shadow:2px 2px 4px black;
 }
 
 .seg-1{transform:rotate(36deg);}
@@ -130,36 +131,49 @@ text-shadow:2px 2px 4px rgba(0,0,0,0.9);
 .pointer{
 position:absolute;
 top:-20px;
+left:50%;
+transform:translateX(-50%);
+border-left:18px solid transparent;
+border-right:18px solid transparent;
+border-top:35px solid white;
 z-index:10;
-border-left:20px solid transparent;
-border-right:20px solid transparent;
-border-top:40px solid #fff;
 }
 
 .center-dot{
 position:absolute;
-width:50px;
-height:50px;
-background:#fff;
+width:45px;
+height:45px;
+background:white;
 border-radius:50%;
 border:6px solid #111;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
 }
 
 /* BOTAO */
 
 .spin-btn{
+margin-top:30px;
 background:linear-gradient(45deg,#ff00ea,#00f3ff);
 border:none;
-padding:15px 40px;
-font-size:1.5rem;
+padding:15px 35px;
+font-size:1.3rem;
 font-weight:900;
 color:white;
 border-radius:50px;
 cursor:pointer;
-text-transform:uppercase;
-box-shadow:0 10px 20px rgba(0,243,255,0.4);
-animation:pulse-btn 2s infinite;
-margin-bottom:40px;
+}
+
+/* RODAPÉ */
+
+.footer{
+margin-top:25px;
+font-weight:900;
+color:#00f3ff;
+letter-spacing:2px;
+text-shadow:0 0 10px #00f3ff;
+font-size:0.9rem;
 }
 
 /* MODAL */
@@ -176,7 +190,7 @@ align-items:center;
 justify-content:center;
 opacity:0;
 pointer-events:none;
-transition:0.4s;
+transition:0.3s;
 }
 
 .modal.active{
@@ -188,12 +202,9 @@ pointer-events:auto;
 background:#111;
 padding:40px;
 border-radius:20px;
-text-align:center;
 border:2px solid #00f3ff;
+text-align:center;
 }
-
-.modal h2{color:#fff;font-size:2rem;}
-.modal p{color:#ccc;margin-bottom:20px;}
 
 .prize-text{
 color:#00ff88;
@@ -208,41 +219,24 @@ font-weight:900;
 }
 
 .close-btn{
+margin-top:20px;
 background:#333;
 border:none;
-padding:10px 30px;
-color:#fff;
+padding:10px 25px;
+color:white;
 border-radius:10px;
 cursor:pointer;
 }
 
-/* RODAPÉ */
-
-.footer{
-text-align:center;
-font-weight:900;
-letter-spacing:2px;
-color:#00f3ff;
-text-shadow:0 0 10px #00f3ff;
-margin-top:10px;
-margin-bottom:20px;
-}
-
 /* ANIMAÇÕES */
-
-@keyframes float{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-10px)}
-}
 
 @keyframes spin-border{
 100%{transform:rotate(360deg)}
 }
 
-@keyframes pulse-btn{
-0%{box-shadow:0 0 0 0 rgba(0,243,255,0.7)}
-70%{box-shadow:0 0 0 20px rgba(0,243,255,0)}
-100%{box-shadow:0 0 0 0 rgba(0,243,255,0)}
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
 }
 
 </style>
@@ -250,8 +244,10 @@ margin-bottom:20px;
 
 <body>
 
+<div class="main" id="main">
+
 <div class="logo-container">
-<h1 class="logo">CENTER TECH</h1>
+<div class="logo">CENTER TECH</div>
 <div class="logo-subtitle">SORTEIO EXCLUSIVO</div>
 </div>
 
@@ -280,24 +276,43 @@ margin-bottom:20px;
 PROMOÇÃO EXCLUSIVA PARA A EXPO B.E.I
 </div>
 
-<div class="modal" id="resultModal">
+</div>
 
+<div class="modal" id="resultModal">
 <div class="modal-content">
 
 <h2 id="modalTitle"></h2>
 <p id="modalDesc"></p>
-
 <div id="modalPrize"></div>
-
-<br>
 
 <button class="close-btn" onclick="closeModal()">Continuar</button>
 
 </div>
-
 </div>
 
 <script>
+
+/* AUTO ESCALA PARA QUALQUER TELA */
+
+function scaleUI(){
+
+const baseWidth=420
+const baseHeight=650
+
+const scaleX=window.innerWidth/baseWidth
+const scaleY=window.innerHeight/baseHeight
+
+const scale=Math.min(scaleX,scaleY)
+
+document.getElementById("main").style.transform="scale("+scale+")"
+
+}
+
+window.addEventListener("resize",scaleUI)
+scaleUI()
+
+
+/* ROLETA */
 
 const wheel=document.getElementById("wheel")
 const spinBtn=document.getElementById("spinBtn")
@@ -357,21 +372,15 @@ function showResult(result){
 if(result.type==="win"){
 
 modalTitle.innerText="🎉 PARABÉNS 🎉"
-
 modalDesc.innerText="Receba seu prêmio com a galera da CENTER TECH"
-
 modalPrize.className="prize-text"
-
 modalPrize.innerText=result.name
 
 }else{
 
 modalTitle.innerText="Quase!"
-
 modalDesc.innerText="Tente novamente!"
-
 modalPrize.className="lose-text"
-
 modalPrize.innerText=result.name
 
 }
